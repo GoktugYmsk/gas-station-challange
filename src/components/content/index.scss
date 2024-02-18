@@ -1,3 +1,11 @@
 .container-content {
-  background: red;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  .container-content__top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 120px;
+  }
 }
