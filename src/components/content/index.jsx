@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Dropdown from "react-bootstrap/Dropdown";
 import axios from "axios";
-import "./index.scss";
+
+import Dropdown from "react-bootstrap/Dropdown";
+
 import { CITIES } from "../app/mockCities/index";
 import FuelPricesTable from "./FuelPricesTable";
+
+import "./index.scss";
 
 const COMPANY_NAMES = {
   po: "Petrol Ofisi",

@@ -1,9 +1,12 @@
 import React from "react";
+
 import Navbar from "react-bootstrap/Navbar";
+
 import opet from "../../images/opet.png";
 import alpet from "../../images/alpet.png";
-import tp from "../../images/turkeyPetrolleri.png";
 import sunpet from "../../images/sunpet.png";
+import tp from "../../images/turkeyPetrolleri.png";
+
 import "./index.scss";
 
 function Header({ selectedCompany }) {

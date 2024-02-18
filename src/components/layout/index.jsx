@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import Content from "../content";
+
 import Header from "../header";
+import Content from "../content";
+
 import "./index.scss";
 
 function Layout() {
