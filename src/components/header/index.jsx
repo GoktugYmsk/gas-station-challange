@@ -1,38 +1,30 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import opet from "../../images/opet.png";
+import alpet from "../../images/alpet.png";
+import tp from "../../images/turkeyPetrolleri.png";
+import sunpet from "../../images/sunpet.png";
 import "./index.scss";
 
-function Header() {
+function Header({ selectedCompany }) {
+  const companyLogos = {
+    po: "data:image/png;base64,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",
+    opet: opet,
+    alpet: alpet,
+    tp: tp,
+    sunpet: sunpet,
+  };
+
+  const companyLogoUrl = companyLogos[selectedCompany];
+
   return (
     <div>
-      <Navbar expand="lg" className="bg-body-tertiary">
-        <Container>
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <Navbar
+        expand="lg"
+        className="navbar"
+        style={{ backgroundImage: `url(${companyLogoUrl})` }}
+        fixed="top"
+      ></Navbar>
     </div>
   );
 }

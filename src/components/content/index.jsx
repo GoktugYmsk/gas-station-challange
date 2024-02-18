@@ -3,6 +3,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import axios from "axios";
 import "./index.scss";
 import { CITIES } from "../app/mockCities/index";
+import FuelPricesTable from "./FuelPricesTable";
 
 const COMPANY_NAMES = {
   po: "Petrol Ofisi",
@@ -12,9 +13,8 @@ const COMPANY_NAMES = {
   sunpet: "Sunpet",
 };
 
-function Content() {
+function Content({ selectedCompany, setSelectedCompany }) {
   const [selectedCity, setSelectedCity] = useState("34");
-  const [selectedCompany, setSelectedCompany] = useState("po");
   const [fuelPrices, setFuelPrices] = useState(null);
 
   console.log("selectedCompany", selectedCompany, "selectedCity", selectedCity);
@@ -67,34 +67,24 @@ function Content() {
 
   return (
     <div className="container-content">
-      <div>
+      <div className="container-content__top">
+        <div>
+          <Dropdown>
+            <Dropdown.Toggle variant="danger" id="city-dropdown">
+              {CITIES[selectedCity]}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>{cityItems}</Dropdown.Menu>
+          </Dropdown>
+        </div>
         <Dropdown>
-          <Dropdown.Toggle variant="success" id="city-dropdown">
-            {CITIES[selectedCity]}
+          <Dropdown.Toggle variant="danger" id="company-dropdown">
+            {COMPANY_NAMES[selectedCompany]}
           </Dropdown.Toggle>
-          <Dropdown.Menu>{cityItems}</Dropdown.Menu>
+          <Dropdown.Menu>{companyItems}</Dropdown.Menu>
         </Dropdown>
       </div>
-      <Dropdown>
-        <Dropdown.Toggle variant="success" id="company-dropdown">
-          {COMPANY_NAMES[selectedCompany]}
-        </Dropdown.Toggle>
-        <Dropdown.Menu>{companyItems}</Dropdown.Menu>
-      </Dropdown>
 
-      {fuelPrices && (
-        <div>
-          <p>Son Yenileme: {fuelPrices.sonYenileme}</p>
-          <ul>
-            {fuelPrices.fiyatlar.map((item) => (
-              <li key={item.ilce}>
-                {item.ilce} - Benzin: {item.benzin}, Mazot: {item.mazot}, LPG:{" "}
-                {item.lpg}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <FuelPricesTable fuelPrices={fuelPrices} />
     </div>
   );
 }
