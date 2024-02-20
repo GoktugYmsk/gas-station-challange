@@ -31,13 +31,13 @@ function Content({ selectedCompany, setSelectedCompany }) {
   };
 
   const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        `/api/${selectedCompany}/${selectedCity}`
-      );
+    const proxyUrl = "https://thingproxy.freeboard.io/fetch/";
+    const apiUrl = "https://akaryakit-fiyatlari.vercel.app/api/po/34";
 
-      console.log("response", response);
+    try {
+      const response = await axios.get(proxyUrl + apiUrl);
       setFuelPrices(response.data);
+      console.log(response);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
